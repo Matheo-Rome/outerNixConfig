@@ -26,7 +26,7 @@ in
   # environment.
   home.packages = with pkgs; [
     #Fonts
-    (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+    (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "JetBrainsMono"]; })
     #Regular packages
     anki
     bat

@@ -6,7 +6,22 @@
   settings = {
     window.opacity = 0.97;
 
-    font.size = 10;
+    font = {
+      size = 9;
+      normal = {
+        family = "JetBrainsMono";
+        style = "Regular";
+      };
+      bold = {
+        family = "DejaVuSansMono";
+        style = "Bold";
+      };
+      italic = {
+        family = "DejaVuSansMono";
+        style = "italic";
+      };
+
+    };
 
     #cursor.style = "Beam";
   

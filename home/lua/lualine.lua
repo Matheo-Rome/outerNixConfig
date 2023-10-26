@@ -18,7 +18,13 @@ local colors = {
   magenta  = '#c678dd',
   blue     = '#51afef',
   red      = '#ec5f67',
+  white    = '#ffffff',
+  darkgray = '#3d3d3d',
+  gray     = '#5A5A5A',
+  lightgray= '#807d7d',
 }
+
+local curr_color = '#ec5f67'
 
 local conditions = {
   buffer_not_empty = function()
@@ -39,21 +45,46 @@ local config = {
   options = {
     -- Disable sections and component separators
     component_separators = '',
-    section_separators = '',
+    section_separators = {left = '', right = ''},
     theme = {
       -- We are going to use lualine_c an lualine_x as left and
       -- right section. Both are highlighted by c theme .  So we
       -- are just setting default looks o statusline
-      normal = { c = { fg = colors.fg, bg = colors.bg } },
+      normal = {
+            a = {bg = colors.darkgray},
+            b = {bg = colors.gray},
+            c = { fg = colors.fg, bg = colors.bg }
+        },
       inactive = { c = { fg = colors.fg, bg = colors.bg } },
     },
   },
   sections = {
     -- these are to remove the defaults
-    lualine_a = {},
-    lualine_b = {},
+    lualine_a = {
+        {
+            function ()
+                return''
+            end,
+            separator = {right = ''},
+        },
+    },
+    lualine_b = {
+        {
+            function ()
+                return ''
+            end,
+            separator = {right = ''},
+        },
+    },
     lualine_y = {},
-    lualine_z = {},
+    lualine_z = {
+        {
+            function ()
+                return ''
+            end,
+            separator = {right = '', left = ''},
+        },
+    },
     -- These will be filled later
     lualine_c = {},
     lualine_x = {},
@@ -69,6 +100,14 @@ local config = {
   },
 }
 
+local function ins_a(component)
+  table.insert(config.sections.lualine_a, component)
+end
+
+local function ins_b(component)
+  table.insert(config.sections.lualine_b, component)
+end
+
 -- Inserts a component in lualine_c at left section
 local function ins_left(component)
   table.insert(config.sections.lualine_c, component)
@@ -79,40 +118,13 @@ local function ins_right(component)
   table.insert(config.sections.lualine_x, component)
 end
 
-ins_left {
+local function ins_z(component)
+  table.insert(config.sections.lualine_z, component)
+end
+
+ins_a {
   function()
     return '   '
-  end,
-  color = { fg = colors.blue }, -- Sets highlighting of component
-  padding = { left = 0, right = 2 }, -- We don't need space before this
-}
-
-ins_left {
-  -- mode component
-  function()
-    -- return ''
-    local symbol = {
-      n = "  NORMAL",
-      i = "  INSERT",
-      v = "  VISUAL",
-      [''] = "  VISUAL BLOCK",
-      V = "  VISUAL LINE",
-      c = "  COMMAND",
-      no = " NORMAL (no)",
-      s = " SELECT",
-      S = " S-LINE",
-      [''] = " S-BLOCK",
-      ic = " INSERT (completion)",
-      R = "  REPLACE",
-      Rv = " V-REPLACE",
-      cv = " COMMAND",
-      ce = " COMMAND",
-      r = " PROMPT",
-      rm = " MORE",
-      ['r?'] = " CONFIRM",
-      ['!'] = " SHELL",
-    }
-    return symbol[vim.fn.mode()]
   end,
   color = function()
     -- auto change color according to neovims mode
@@ -138,28 +150,78 @@ ins_left {
       ['!'] = colors.red,
       t = colors.red,
     }
-    return { fg = mode_color[vim.fn.mode()] }
+      curr_color = mode_color[vim.fn.mode()]
+      return {fg = mode_color[vim.fn.mode()]}
+    end,
+  padding = { left = 0}, -- We don't need space before this
+}
+
+ins_a {
+  -- mode component
+  function()
+    local symbol = {
+      n = "  NORMAL",
+      i = "  INSERT",
+      v = "  VISUAL",
+      [''] = "  VISUAL BLOCK",
+      V = "  VISUAL LINE",
+      c = "  COMMAND",
+      no = "  NORMAL (no)",
+      s = "  SELECT",
+      S = "  S-LINE",
+      [''] = "  S-BLOCK",
+      ic = "  INSERT (completion)",
+      R = "  REPLACE",
+      Rv = "  V-REPLACE",
+      cv = "  COMMAND",
+      ce = "  COMMAND",
+      r = "  PROMPT",
+      rm = "  MORE",
+      ['r?'] = "  CONFIRM",
+      ['!'] = "  SHELL",
+    }
+    return symbol[vim.fn.mode()]
+  end,
+  color = function()
+    return { fg = curr_color }
   end,
   padding = { right = 2 },
 }
 
-ins_left {
-  -- filesize component
-  'filesize',
-  cond = conditions.buffer_not_empty,
-}
-
-ins_left {
+ins_b {
   'filename',
   cond = conditions.buffer_not_empty,
   color = { fg = colors.magenta, gui = 'bold' },
 }
 
-ins_left { 'location' }
-
-ins_left { 'progress', color = { fg = colors.fg, gui = 'bold' } }
+ins_left {
+  'branch',
+  icon = ' ',
+  color = { fg = colors.violet, gui = 'bold' },
+}
 
 ins_left {
+  'diff',
+  -- Is it me or the symbol for modified us really weird
+  symbols = { added = ' ', modified = ' ', removed = ' ' },
+  diff_color = {
+    added = { fg = colors.green },
+    modified = { fg = colors.orange },
+    removed = { fg = colors.red },
+  },
+  cond = conditions.hide_in_width,
+}
+
+
+-- Insert mid section. You can make any number of sections in neovim :)
+-- for lualine it's any number greater then 2
+ins_right{
+  function()
+    return '%='
+  end,
+}
+
+ins_right {
   'diagnostics',
   sources = { 'nvim_diagnostic' },
   symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
@@ -167,18 +229,11 @@ ins_left {
     color_error = { fg = colors.red },
     color_warn = { fg = colors.yellow },
     color_info = { fg = colors.cyan },
+    color_hint = { fg = colors.green },
   },
 }
- 
--- Insert mid section. You can make any number of sections in neovim :)
--- for lualine it's any number greater then 2
-ins_left {
-  function()
-    return '%='
-  end,
-}
 
-ins_left {
+ins_right {
   -- Lsp server name .
   function()
     local msg = 'There\'s more to explore here'
@@ -196,7 +251,7 @@ ins_left {
     return msg
   end,
   icon = ' LSP:',
-  color = { fg = '#ffffff', gui = 'bold' },
+  color = { fg = colors.white, gui = 'bold' },
 }
 
 -- Add components to right sections
@@ -204,41 +259,37 @@ ins_right {
   'o:encoding', -- option component same as &encoding in viml
   fmt = string.upper, -- I'm not sure why it's upper case either ;)
   cond = conditions.hide_in_width,
-  color = { fg = colors.green, gui = 'bold' },
+  color = function ()
+    return { fg = curr_color, gui = 'bold' }
+  end
 }
+--ins_right {
+--  'fileformat',
+--  fmt = string.upper,
+--  icons_enabled = true, -- I think icons are cool but Eviline doesn't have them. sigh
+--  color = { fg = colors.green, gui = 'bold' },
+--}
+--ins_left {
+--  -- filesize component
+--  'filesize',
+--  cond = conditions.buffer_not_empty,
+--}
+ins_right { 'progress', color = { fg = colors.white, gui = 'bold' } }
 
-ins_right {
-  'fileformat',
-  fmt = string.upper,
-  icons_enabled = true, -- I think icons are cool but Eviline doesn't have them. sigh
-  color = { fg = colors.green, gui = 'bold' },
-}
+ins_z { 'location',
+    color = function ()
+		return {bg = curr_color, fg = colors.white}
+	end,
+	gui = 'bold' }
 
-ins_right {
-  'branch',
-  icon = '',
-  color = { fg = colors.violet, gui = 'bold' },
-}
-
-ins_right {
-  'diff',
-  -- Is it me or the symbol for modified us really weird
-  symbols = { added = ' ', modified = '󰝤 ', removed = ' ' },
-  diff_color = {
-    added = { fg = colors.green },
-    modified = { fg = colors.orange },
-    removed = { fg = colors.red },
-  },
-  cond = conditions.hide_in_width,
-}
-
-ins_right {
-  function()
-    return '▊'
-  end,
-  color = { fg = colors.blue },
-  padding = { left = 2 },
-}
+--ins_right {
+--  function()
+--    return '▊'
+--  end,
+--  color = { fg = colors.blue },
+--  padding = { left = 2 },
+--}
 
 -- Now don't forget to initialize lualine
 lualine.setup(config)
+

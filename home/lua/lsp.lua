@@ -91,7 +91,15 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 require'lspconfig'.rnix.setup{capabilities = capabilities}
 require'lspconfig'.ccls.setup{capabilities = capabilities}
 require'lspconfig'.pyright.setup{capabilities = capabilities}
-require'lspconfig'.lua_ls.setup{capabilities = capabilities}
+require'lspconfig'.lua_ls.setup{capabilities = capabilities,
+                                settings = {
+                                    Lua = {
+                                        diagnostics = {
+                                            globals = {'vim'},
+                                        }
+                                    }
+                                }
+                            }
 
 
 local t = function(str)

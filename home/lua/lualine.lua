@@ -280,7 +280,8 @@ ins_z { 'location',
     color = function ()
 		return {bg = curr_color, fg = colors.white}
 	end,
-	gui = 'bold' }
+	gui = 'bold'
+    }
 
 --ins_right {
 --  function()

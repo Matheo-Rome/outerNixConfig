@@ -13,11 +13,11 @@
         style = "Regular";
       };
       bold = {
-        family = "DejaVuSansMono";
+        family = "JetBrainsMono";
         style = "Bold";
       };
       italic = {
-        family = "DejaVuSansMono";
+        family = "JetBrainsMono";
         style = "italic";
       };
 

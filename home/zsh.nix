@@ -22,7 +22,7 @@
 
   oh-my-zsh = {
     enable = true;
-    theme = "edvardm";	
+    #theme = "powerlevel10k";	
     plugins = [
       	"git"
     ];
@@ -34,6 +34,7 @@
   [[ ! -f ~/.config/home-manager/home/p10k-config/p10k.zsh ]] || source ~/.config/home-manager/home/p10k-config/p10k.zsh
 
   eval "$(direnv hook zsh)"
+  eval $(thefuck --alias)
 
   bindkey '^ ' autosuggest-accept
   '';

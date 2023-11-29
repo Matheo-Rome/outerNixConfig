@@ -31,6 +31,7 @@ in
     anki
     bat
     bitwarden
+    cargo
     ccls 
     cmake 
     discord
@@ -40,25 +41,36 @@ in
     gcc 
     gdb
     gnumake
+    gtk3
     htop
     imagemagick
+    killall
     man-pages
     man-pages-posix 
+    libmpdclient
     neofetch
     nil
     oh-my-zsh
+    pamixer
     pavucontrol
     rnix-lsp
+    nixpkgs-fmt
     pstree
     pyright 
+    python3
+    pywal
+    procps
+    polybar
     scrot
     slack
     spotify
     tmux
     tmux
     tree
+    thefuck
     lua-language-server
     unzip
+    check-uptime
     valgrind
     vim 
     vscode-fhs
@@ -66,6 +78,7 @@ in
     xclip
     xdotool
     xsel
+    yad
     zathura
     zsh
 
@@ -79,17 +92,37 @@ in
   home.sessionVariables = {
     EDITOR= "nvim";
     TERMINAL = "alacritty";
+    WLR_NO_HARDWARE_CURSORS= "1";
+    NIXOS_OZONE_WL = "1";
   };
     
   xsession.windowManager.i3 = import ./home/i3.nix { inherit pkgs lib; };
+
 
   programs.alacritty = import ./home/alacritty.nix { inherit pkgs; };
   programs.zsh = import ./home/zsh.nix { inherit pkgs lib; };
   programs.rofi = import ./home/rofi.nix { inherit pkgs; };
   programs.neovim = import ./home/neovim.nix { inherit pkgs; };
 
-  services.polybar = import ./home/polybar.nix {inherit pkgs; };
+  services.polybar = import ./home/poly.nix {inherit pkgs; };
   services.betterlockscreen = import ./home/betterlockscreen.nix { inherit pkgs; };
+
+  #xdg.configFile."polybar".source = pkgs.symlinkJoin {
+#name = "polybar-symlinks";
+#  paths =
+#    let
+#      polybar-themes = pkgs.fetchFromGitHub {
+#        owner = "adi1090x";
+#        repo = "polybar-themes";
+#        rev = "c855bfa6cee87783a98f4e995928dfb91810d0c0"; # Or, better, use a specific commit so you don't have to update the sha256-hash all the time
+#        sha256 = "VJE6LHz18PYGy6ZIgtc0dpvFEMR4Hs12S9tQ+zpX6KQ="; # Fill this in with the hash that nix provides when you attempt to build your config using this
+#      };
+#    in
+#    [
+#      "${polybar-themes}/fonts"
+#      "${polybar-themes}/simple"
+#    ];
+#};
 
   programs.git = {
     enable = true;

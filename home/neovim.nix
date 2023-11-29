@@ -41,6 +41,7 @@ in
     nvim-autopairs
     better-escape-nvim
     auto-hlsearch-nvim
+    nvim-colorizer-lua
     #rainbow-delimiters-nvim
     
     #Git
@@ -68,6 +69,9 @@ in
     #Notify 
     nvim-notify
 
+    #Folding
+    nvim-ufo
+
     #LSP
     nvim-cmp
     nvim-lspconfig
@@ -93,9 +97,11 @@ in
         require('nvim-autopairs').setup()
         require("auto-hlsearch").setup()
         require('nvim-web-devicons').setup()
+        require'colorizer'.setup()
         require('notify').setup()
           vim.defer_fn(function()
             vim.cmd [[
+                luafile ~/.config/home-manager/home/lua/ufo.lua
                 luafile ~/.config/home-manager/home/lua/leap.lua
                 luafile ~/.config/home-manager/home/lua/lualine.lua
                 luafile ~/.config/home-manager/home/lua/init.lua

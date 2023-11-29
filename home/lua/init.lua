@@ -29,6 +29,7 @@ map('n', '<C-t>', ':NvimTreeToggle <CR>', {silent = true, noremap = true})
 
 -- Telescope 
 map('n', '<C-f>', ':Telescope find_files <CR>', {silent = true, noremap = true})
+map('n', '<C-g>', ':Telescope <CR>', {silent = true, noremap = true})
 map('n', '<C-n>', ':Telescope live_grep <CR>', {silent = true, noremap = true})
 
 -- LspSaga
@@ -43,6 +44,9 @@ map("n", "<C-PageDown>", ":BufferLineCycleNext <CR>", {silent = true, noremap = 
 
 -- Set clipboard to use system clipboard
 opt.clipboard = "unnamedplus"
+
+-- Remove default vim bar 
+opt.showmode = false
 
 -- Use mouse 
 opt.mouse = "a"

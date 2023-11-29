@@ -37,6 +37,13 @@
         gray = "#9E9E9E";
         blue-gray = "#6D8895";
         light-green = "#7EB36B";
+
+        # Color Outer Wilds
+        o_black = "#0b1e26";
+        o_purple = "#6a4d75";
+        o_blue = "#174e7d";
+        o_green = "#676e4c";
+        o_orange = "#ff7d25";
     };
   in {
     "global/wm" = {
@@ -84,7 +91,7 @@
 
         dim-value = "1.0";
 
-        wm-name = "";
+        wm-name = "i3";
 
         locale = "";
 

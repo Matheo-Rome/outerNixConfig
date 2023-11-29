@@ -1,5 +1,3 @@
-cravite = require'nvim-web-devicons'.get_icon("./../icons/cravite.png", "png", {default = true})
-
 require('bufferline').setup {
     options = {
         mode = "buffers",
@@ -10,7 +8,7 @@ require('bufferline').setup {
         right_mouse_command = "bdelete! %d",
         left_mouse_command = "buffer %d",
         middle_mouse_command = nil,
-        
+
         indicator_icon = '|',
         buffer_close_icon = '󰅖',
         modified_icon = '●',
@@ -21,7 +19,7 @@ require('bufferline').setup {
         max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
         truncate_names = true, -- whether or not tab names should be truncated
         tab_size = 18,
-        diagnostics = "nvim_lsp", 
+        diagnostics = "nvim_lsp",
         -- The diagnostics indicator can be set to nil to keep the buffer name highlight but delete the highlighting
         diagnostics_indicator = function(count, level, diagnostics_dict, context)
             return "("..count..")"

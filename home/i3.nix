@@ -23,7 +23,8 @@ in
         always = true;
       }
       {
-        command = "systemctl --user restart polybar";
+        command = "polybar -q -r main &";
+        #command = "systemctl --user restart polybar";
         always = true;
       }
       {
@@ -43,8 +44,13 @@ in
 
     keybindings = lib.mkOptionDefault {
       "${mod}+Shift+x" = "exec betterlockscreen -l";
+      "${mod}+Shift+r" = "restart";
       "--release ${mod}+Shift+s" = "exec scrot -s '/tmp/%F_%T_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f'";
       "${mod}+Shift+f" = "exec scrot '/tmp/%F_%T_$wx$h.png' -e 'xclip -selection clipboard -target image/png -i $f'";
+      "XF86MonBrightnessDown" = "exec ~/.config/home-manager/home/bright -";
+      "${mod}+Shift+g" = "exec ~/.config/home-manager/home/bright -";
+      "XF86MonBrightnessUp" = "exec ~/.config/home-manager/home/bright +";
     };
   };
 }
+

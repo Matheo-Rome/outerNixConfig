@@ -14,7 +14,9 @@
     }
   ];
   shellAliases = {
-	hupdate = "home-manager switch";
+      hupdate = "home-manager switch";
+      ls = "exa";
+      cat = "bat";
   };
 
   enableAutosuggestions = true;
@@ -37,5 +39,7 @@
   eval $(thefuck --alias)
 
   bindkey '^ ' autosuggest-accept
+  export PGDATA="$HOME/postgres_data"
+  export PGHOST="/tmp"
   '';
 }

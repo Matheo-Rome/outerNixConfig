@@ -24,7 +24,6 @@
 
         offset-x = "1%";
         # offset-y = "2%:-2";
-
         background = color.background;
         foreground = color.foreground;
 

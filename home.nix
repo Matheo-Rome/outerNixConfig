@@ -21,6 +21,7 @@ in
   home.stateVersion = "23.05"; # Please read the comment before changing.
 
   fonts.fontconfig.enable = true;
+  
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
@@ -34,23 +35,32 @@ in
     cargo
     ccls 
     cmake 
+    criterion
     discord
+    docker
+    docker-machine
+    dotnet-sdk_8
+    exa
     feh
     file
     font-manager
-    gcc 
+    #gcc 
     gdb
     gnumake
     gtk3
     htop
     imagemagick
+    jetbrains-toolbox
     killall
     man-pages
     man-pages-posix 
+    meson
+    ninja
     libmpdclient
     neofetch
     nil
     oh-my-zsh
+    omnisharp-roslyn
     pamixer
     pavucontrol
     rnix-lsp
@@ -58,6 +68,7 @@ in
     pstree
     pyright 
     python3
+    pre-commit
     pywal
     procps
     polybar
@@ -86,6 +97,16 @@ in
     ripgrep 
     clang-tools
     bear
+
+    #Java 
+    openjdk
+    maven
+
+    #NodeJs
+    python310Packages.nodeenv
+    nodejs_20
+    nodejs_20.pkgs.pnpm
+    nodePackages.markdownlint-cli
   ];
   
 

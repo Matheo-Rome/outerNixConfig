@@ -89,7 +89,18 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
 ----------------------------------------------------------------------------------------------------
 require'lspconfig'.rnix.setup{capabilities = capabilities}
-require'lspconfig'.ccls.setup{capabilities = capabilities}
+require'lspconfig'.ccls.setup{
+    capabilities = capabilities,
+    init_options = {
+        compilationDatabaseDirectory = "build";
+        index = {
+            threads = 0;
+        };
+        clang = {
+            excludeArgs = { "-frounding-math"} ;
+        };
+    }
+}
 require'lspconfig'.pyright.setup{capabilities = capabilities}
 require'lspconfig'.lua_ls.setup{capabilities = capabilities,
                                 settings = {
@@ -100,8 +111,6 @@ require'lspconfig'.lua_ls.setup{capabilities = capabilities,
                                     }
                                 }
                             }
-
-
 local t = function(str)
     return vim.api.nvim_replace_termcodes(str, true, true, true)
 end

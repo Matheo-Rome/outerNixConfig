@@ -192,7 +192,7 @@ in
       ramp-font = 7;
       ramp-background = background1;
     };
-  
+
   filesystem = {
       type = "internal/fs";
 

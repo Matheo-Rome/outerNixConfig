@@ -31,12 +31,13 @@ map('n', '<C-t>', ':NvimTreeToggle <CR>', {silent = true, noremap = true})
 map('n', '<C-f>', ':Telescope find_files <CR>', {silent = true, noremap = true})
 map('n', '<C-g>', ':Telescope <CR>', {silent = true, noremap = true})
 map('n', '<C-n>', ':Telescope live_grep <CR>', {silent = true, noremap = true})
+map('n', '<C-o>', ':Telescope oldfiles <CR>', {silent = true, noremap = true})
 
 -- LspSaga
 map('n', '<C-l>', ':Lspsaga hover_doc <CR>', {silent = true, noremap = true})
 
 map("n", "<C-r>", ":Lspsaga rename<CR>", {silent = true, noremap = true})
-map("n", "<C-h>",":Lspsaga hover_doc <CR>", {silent = true, noremap = true})
+map("n", "<C-h>",":Lspsaga lsp_finder <CR>", {silent = true, noremap = true})
 
 -- BufferLine displacement
 map("n", "<C-PageUp>", ":BufferLineCyclePrev <CR>", {silent = true, noremap = true})

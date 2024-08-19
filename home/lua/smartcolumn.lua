@@ -2,13 +2,13 @@ local smartcolumn = {}
 
 local config = {
    colorcolumn = "80",
-   disabled_filetypes = { "help", "text", "markdown" },
+   disabled_filetypes = { "help", "text", "dashboard" },
    custom_colorcolumn = {},
    scope = "file",
 }
 
 local function exceed(buf, win, min_colorcolumn)
-   local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, true) -- file scope
+   local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, true) -- file scope  
    if config.scope == "line" then
       lines = vim.api.nvim_buf_get_lines(
          buf,
@@ -100,4 +100,5 @@ function smartcolumn.setup(user_config)
    )
 end
 
-return smartcolumn
+--return smartcolumn
+smartcolumn.setup()

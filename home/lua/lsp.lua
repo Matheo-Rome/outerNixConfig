@@ -50,10 +50,10 @@ cmp.setup({
 		-- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
         ['<CR>'] = cmp.mapping.confirm({ select = true }),
 
-    }),   
+    }),
     sources = cmp.config.sources({
       { name = 'nvim_lsp' },
-      { name = 'luasnip' }, 
+      { name = 'luasnip' },
     }, {
       { name = 'buffer' },
     })
@@ -102,6 +102,7 @@ require'lspconfig'.ccls.setup{
     }
 }
 require'lspconfig'.pyright.setup{capabilities = capabilities}
+require'lspconfig'.vhdl_ls.setup{capabilities = capabilities}
 require'lspconfig'.lua_ls.setup{capabilities = capabilities,
                                 settings = {
                                     Lua = {

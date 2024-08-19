@@ -30,6 +30,7 @@ in
     (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "JetBrainsMono"]; })
     #Regular packages
     anki
+    arandr
     bat
     bitwarden
     cargo
@@ -59,10 +60,12 @@ in
     libmpdclient
     neofetch
     nil
+    ntp
     oh-my-zsh
     omnisharp-roslyn
     pamixer
     pavucontrol
+    poetry
     rnix-lsp
     nixpkgs-fmt
     pstree
@@ -155,8 +158,6 @@ in
     enable = true;
     nix-direnv.enable = true;
   };
-
-
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.

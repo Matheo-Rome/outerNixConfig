@@ -50,6 +50,46 @@ in
       "XF86MonBrightnessDown" = "exec ~/.config/home-manager/home/bright -";
       "${mod}+Shift+g" = "exec ~/.config/home-manager/home/bright -";
       "XF86MonBrightnessUp" = "exec ~/.config/home-manager/home/bright +";
+
+      #Change Focus
+      "${mod}+j" = "focus left";
+      "${mod}+k" = "focus down";
+      "${mod}+l" = "focus up";
+      "${mod}+m" = "focus right";
+
+      "${mod}+Left" = "focus left";
+      "${mod}+Down" = "focus down";
+      "${mod}+Up" = "focus up";
+      "${mod}+Right" = "focus right";
+
+      #Move focused window
+      "${mod}+Shift+j" = "move left";
+      "${mod}+Shift+k" = "move down";
+      "${mod}+Shift+l" = "move up";
+      "${mod}+Shift+m" = "move right";
+
+      "${mod}+Shift+Left" = "move left";
+      "${mod}+Shift+Down" = "move down";
+      "${mod}+Shift+Up" = "move up";
+      "${mod}+Shift+Right" = "move right";
+
+      #Toggle tilling/floating
+      "${mod}+Shift+space" = "floating toggle";
+
+      #change focus between tiling / floating windows
+      "${mod}+space" = "focus mode_toggle";
+
+      #Split in horizontal orientation
+      "${mod}+h" = "split h";
+
+      #Split in vertical orientation
+      "${mod}+v" = "split v";
+
+      # change container layout (stacked, tabbed, toggle split)
+      "${mod}+s" = "layout stacking";
+      "${mod}+w" = "layout tabbed";
+      "${mod}+e" = "layout toggle split";
+
     };
   };
 }

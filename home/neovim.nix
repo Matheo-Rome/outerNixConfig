@@ -2,21 +2,22 @@
 
 let 
    mapleadersDefinitions = ''
-    " These definitions are repeated in every block that uses <leader> or
+    " These definitions are repeated in every block that uses <leader> or 
     " <localleader> bindings. This is because home-manager's extraConfig text
     " appears too late in the generated config file, so if I define map leaders
     " only in extraConfig, it will appear after the plugin configurations, who
     " sometimes need the definition.
     let mapleader = ","
     let maplocalleader = "\\"
-     '';
+    '';
 in
   {
     enable = true;
 	vimAlias = true;
-        withPython3 = true;
+    withPython3 = true;
 	extraPackages = with pkgs; [
 	git
+    vhdl-ls
 	];
 	extraPython3Packages = (ps: with ps; [
 	pylint
@@ -29,7 +30,7 @@ in
     nvim-tree-lua
     
     vim-nix
-    indentLine
+    #indentLine
       
     # Noice
     (nvim-treesitter.withPlugins (
@@ -42,6 +43,7 @@ in
     better-escape-nvim
     auto-hlsearch-nvim
     nvim-colorizer-lua
+    #smartcolumn-nvim
     #rainbow-delimiters-nvim
     
     #Git
@@ -72,6 +74,9 @@ in
     #Folding
     nvim-ufo
 
+    #Greeter
+    dashboard-nvim
+
     #LSP
     nvim-cmp
     nvim-lspconfig
@@ -85,23 +90,31 @@ in
     lspsaga-nvim
     fidget-nvim
 
+    #markdown 
+    markdown-preview-nvim
+
     #Theme
     catppuccin-nvim
+    dracula-nvim
+    tokyonight-nvim
+    nordic-nvim
+    oxocarbon-nvim
+    embark-vim
 	];
 
 	extraConfig = ''
         luafile ~/.config/home-manager/home/lua/lsp.lua
         luafile ~/.config/home-manager/home/lua/catppuccine.lua
+        luafile ~/.config/home-manager/home/lua/startup.lua
         colorscheme catppuccin-mocha
         lua << EOF
         require('nvim-autopairs').setup()
         require("auto-hlsearch").setup()
         require('nvim-web-devicons').setup()
-        require'colorizer'.setup()
+        require('colorizer').setup()
         require('notify').setup()
           vim.defer_fn(function()
             vim.cmd [[
-                luafile ~/.config/home-manager/home/lua/ufo.lua
                 luafile ~/.config/home-manager/home/lua/leap.lua
                 luafile ~/.config/home-manager/home/lua/lualine.lua
                 luafile ~/.config/home-manager/home/lua/init.lua
@@ -110,6 +123,7 @@ in
                 luafile ~/.config/home-manager/home/lua/treesitter.lua
                 luafile ~/.config/home-manager/home/lua/bufferline.lua
                 luafile ~/.config/home-manager/home/lua/nvim-tree.lua
+                luafile ~/.config/home-manager/home/lua/smartcolumn.lua
                 luafile ~/.config/home-manager/home/lua/toggleterm.lua
                 luafile ~/.config/home-manager/home/lua/snippet.lua
             ]]

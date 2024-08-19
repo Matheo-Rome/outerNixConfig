@@ -17,6 +17,9 @@
       hupdate = "home-manager switch";
       ls = "exa";
       cat = "bat";
+      cd = "cs";
+      toolchain = "cd ~/epita/toolchain/toolchain";
+      gitlab = "cd ~/epita/gitlab-manager/terraform"; 
   };
 
   enableAutosuggestions = true;
@@ -41,5 +44,12 @@
   bindkey '^ ' autosuggest-accept
   export PGDATA="$HOME/postgres_data"
   export PGHOST="/tmp"
+  export DIRENV_LOG_FORMAT=""
+  function cs () {
+      cd "$@" && exa -a
+  }
+
+  setopt auto_cd
+  cdpath=($HOME)
   '';
 }

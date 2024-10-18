@@ -87,8 +87,12 @@ cmp.setup({
   })
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+local on_attach = function(client)
+    require'completion'.on_attach(client)
+end
+
 ----------------------------------------------------------------------------------------------------
-require'lspconfig'.rnix.setup{capabilities = capabilities}
+-- require'lspconfig'.rnix.setup{capabilities = capabilities}
 require'lspconfig'.ccls.setup{
     capabilities = capabilities,
     init_options = {
@@ -99,6 +103,39 @@ require'lspconfig'.ccls.setup{
         clang = {
             excludeArgs = { "-frounding-math"} ;
         };
+    }
+}
+
+require'lspconfig'.rust_analyzer.setup{
+    capabilities = capabilities;
+    on_attach = on_attach,
+    settings = {
+        ["rust-analyzer"] = {
+            imports = {
+                granularity = {
+                    group = "module",
+                },
+                prefix = "self",
+            },
+            cargo = {
+                buildScripts = {
+                    enable = true,
+                },
+            },
+            procMacro = {
+                enable = true
+            },
+        }
+    }
+}
+
+require'lspconfig'.als.setup{
+    capabilities = capabilities;
+    settings = {
+        ada = {
+            projectFile = "project.gpr";
+            scenarioVariables = { ... };
+        }
     }
 }
 require'lspconfig'.pyright.setup{capabilities = capabilities}

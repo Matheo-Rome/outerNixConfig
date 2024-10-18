@@ -8,7 +8,7 @@ local config = {
 }
 
 local function exceed(buf, win, min_colorcolumn)
-   local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, true) -- file scope  
+   local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, true) -- file scope
    if config.scope == "line" then
       lines = vim.api.nvim_buf_get_lines(
          buf,

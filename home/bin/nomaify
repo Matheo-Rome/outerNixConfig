@@ -1,0 +1,13 @@
+#!/bin/sh
+
+pw=$(pwd)
+pw=${pw}/"$1"
+name=$(basename "$1")
+name=$(echo "${name%.*}")
+cd ~/Desktop/NomaiText.jl || exit
+rm *.pdf &> /dev/null
+call="include(\"src/NomaiText.jl\"); NomaiText.draw_spiral("\""${pw}"\""; as_string=true, handwriting=0)"
+julia -e "$call"
+rsvg-convert -f pdf -o "$name".pdf output.svg
+firefox "$name".pdf
+rm output.svg

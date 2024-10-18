@@ -18,9 +18,19 @@ in
   # You should not change this value, even if you update Home Manager. If you do
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
-  home.stateVersion = "23.05"; # Please read the comment before changing.
+  home.stateVersion = "24.05"; # Please read the comment before changing.
 
   fonts.fontconfig.enable = true;
+
+
+  home.pointerCursor = {
+     name = "catppuccin-mocha-mauve-cursors";
+
+     gtk.enable = true;
+     x11.enable = true;
+     package = pkgs.catppuccin-cursors.mochaMauve;
+     size = 32; 
+   };
   
 
   # The home.packages option allows you to install Nix packages into your
@@ -32,27 +42,32 @@ in
     anki
     arandr
     bat
+    bc
     bitwarden
+    brightnessctl
     cargo
     ccls 
     cmake 
     criterion
     discord
     docker
-    docker-machine
     dotnet-sdk_8
-    exa
+    eza
     feh
     file
     font-manager
     #gcc 
     gdb
+    gnupg
     gnumake
     gtk3
     htop
     imagemagick
     jetbrains-toolbox
+    julia
+    jq
     killall
+    libcaca
     man-pages
     man-pages-posix 
     meson
@@ -66,11 +81,12 @@ in
     pamixer
     pavucontrol
     poetry
-    rnix-lsp
+    mpv
+    pinentry
     nixpkgs-fmt
     pstree
     pyright 
-    python3
+    python311Full
     pre-commit
     pywal
     procps
@@ -79,10 +95,12 @@ in
     slack
     spotify
     tmux
-    tmux
     tree
     thefuck
+    librsvg
     lua-language-server
+    rust-analyzer
+    rofi-rbw
     unzip
     check-uptime
     valgrind
@@ -120,38 +138,22 @@ in
     NIXOS_OZONE_WL = "1";
   };
     
-  xsession.windowManager.i3 = import ./home/i3.nix { inherit pkgs lib; };
+  xsession.windowManager.i3 = import ./home/nix/i3.nix { inherit pkgs lib; };
 
 
-  programs.alacritty = import ./home/alacritty.nix { inherit pkgs; };
-  programs.zsh = import ./home/zsh.nix { inherit pkgs lib; };
-  programs.rofi = import ./home/rofi.nix { inherit pkgs; };
-  programs.neovim = import ./home/neovim.nix { inherit pkgs; };
+  programs.alacritty = import ./home/nix/alacritty.nix { inherit pkgs; };
+  programs.zsh = import ./home/nix/zsh.nix { inherit pkgs lib; };
+  programs.rofi = import ./home/nix/rofi.nix { inherit pkgs; };
+  programs.neovim = import ./home/nix/neovim.nix { inherit pkgs; };
 
-  services.polybar = import ./home/poly.nix {inherit pkgs; };
-  services.betterlockscreen = import ./home/betterlockscreen.nix { inherit pkgs; };
-
-  #xdg.configFile."polybar".source = pkgs.symlinkJoin {
-#name = "polybar-symlinks";
-#  paths =
-#    let
-#      polybar-themes = pkgs.fetchFromGitHub {
-#        owner = "adi1090x";
-#        repo = "polybar-themes";
-#        rev = "c855bfa6cee87783a98f4e995928dfb91810d0c0"; # Or, better, use a specific commit so you don't have to update the sha256-hash all the time
-#        sha256 = "VJE6LHz18PYGy6ZIgtc0dpvFEMR4Hs12S9tQ+zpX6KQ="; # Fill this in with the hash that nix provides when you attempt to build your config using this
-#      };
-#    in
-#    [
-#      "${polybar-themes}/fonts"
-#      "${polybar-themes}/simple"
-#    ];
-#};
+  services.polybar = import ./home/nix/poly.nix {inherit pkgs; };
+  services.betterlockscreen = import ./home/nix/betterlockscreen.nix { inherit pkgs; };
 
   programs.git = {
     enable = true;
     userName = "Matheo Rome";
     userEmail = "matheo.rome@epita.fr";
+    signing.key = "0xE8709F8C531AA6CD";
   };
   
   programs.direnv = {

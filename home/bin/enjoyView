@@ -1,0 +1,8 @@
+#!/bin/sh
+
+planetsN=$(ls -1 ~/.config/home-manager/home/planets/ | wc -l)
+echo "$planetsN"
+random_number=$(( (RANDOM % planetsN) + 1 ))
+planetsP=$(ls ~/.config/home-manager/home/planets | sed -n "$random_number"p)
+pixterm -d 0 ~/.config/home-manager/home/planets/"$planetsP"
+

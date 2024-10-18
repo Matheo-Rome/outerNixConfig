@@ -1,0 +1,62 @@
+#! /bin/sh
+
+if [ "$1" == "fast" ] || [ "$1" == "f" ]; then 
+    shutdown now;
+fi
+
+currID=$(i3-msg -t get_tree | jq '.. | select(.focused? == true).id')
+fade_in()
+{
+    screen=$(cat /sys/class/graphics/fb0/virtual_size)
+    width=$(echo "$screen" | cut -d "," -f 1)
+    height=$(echo "$screen" | cut -d "," -f 2) 
+
+    duration=$(($1 * 10))
+
+    baseX=249
+    baseY=140
+    diffX=$((width - baseX))
+    diffY=$((height - baseY))
+    incrX=$((diffX / duration))
+    incrY=$((diffY / duration))
+    actX=$baseX
+    actY=$baseY
+    i3-msg "[class=\"shutdown\"]" floating enable > /dev/null
+    i3-msg "[class=\"shutdown\"]" focus > /dev/null
+    # i3-msg "[con_id=\"${currID}\"]" floating enable > /dev/null
+    # i3-msg "[con_id=\"${currID}\"]" focus > /dev/null
+    counter=0
+    sleepD=5
+    while [ $counter -le $duration ]; do 
+        i3-msg "[class=\"shutdown\"]" resize set $actX px $actY px, move position center, move up 15 px> /dev/null
+        # i3-msg "[con_id=\"$currID\"]" resize set $actX px $actY px, move position center, move up 15 px> /dev/null
+        sleep $(echo "$sleepD / 10" | bc -l)
+        tmux send-keys -t shutdown "tree \/" C-m
+        if [ $((counter % 10)) -eq 0 ]; then
+            if echo "$sleepD > 1" | bc -l | grep -q 1; then 
+                sleepD=$((sleepD - 1))
+            elif echo "$sleepD == 1" | bc -l | grep -q 1; then
+                sleepD=0.7
+            fi
+        fi
+        actX=$((actX + incrX))
+        actY=$((actY + incrY))
+        counter=$((counter + 1))
+    done
+    i3-msg "[class=\"shutdown\"]" fullscreen enable > /dev/null
+    shutdown now
+    # i3-msg "[con_id=\"$currID\"]" fullscreen enable > /dev/null
+}
+# i3-msg exec "alacritty --class=shutdown -e bash -c 'tmux new-session -s shutdown; exec bash' --config-file ~/.config/home-manager/home/pictures/.alacritty.toml"
+i3-msg exec "alacritty --class=shutdown --config-file ~/.config/home-manager/home/pictures/.alacritty.toml -e bash -c 'tmux attach-session -t shutdown || tmux new-session -s shutdown' "
+i3-msg exec "mpv --title=end --border=no --no-audio --geometry=100%:100% ~/.config/home-manager/home/pictures/shutdown.mp4" > /dev/null
+sleep 0.3
+tmux send-keys -t shutdown "bash" C-m
+tmux send-keys -t shutdown "PS1=\"\"" C-m
+tmux send-keys -t shutdown "tmux set -g status off" C-m
+tmux send-keys -t shutdown "clear" C-m
+ID=$(i3-msg -t get_tree | jq '.. | select(.name? and .name == "end") | .id')
+i3-msg "[con_id=\"$ID\"]" floating enable > /dev/null
+i3-msg "[con_id=\"$ID\"]" move position 0 0 > /dev/null
+sleep 5.7
+fade_in 15

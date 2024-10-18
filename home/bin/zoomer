@@ -1,0 +1,70 @@
+#!/bin/sh 
+
+send_message() #Subfunction to send emssage to en i3 window
+{
+    i3-msg "[con_id=\"${1}\"]" floating enable > /dev/null
+    i3-msg "[con_id=\"${1}\"]" move position "$2" ppt "$3" ppt > /dev/null
+    i3-msg "[con_id=\"${1}\"]" resize set  "$4" ppt "$5" ppt > /dev/null
+}
+
+if [ "$1" == "exit" ]; then #If exit is entered kill all window and reset the terminal back to normal
+    i3-msg "[class=mpv]" kill > /dev/null
+    ID=$(i3-msg -t get_tree | jq '.. | select(.name? and .name == "caca for X") | .id')
+    ID=$(echo "$ID" | tr '\n' ' ')
+    ID2=$(echo "$ID" | cut -d " " -f 2)
+    ID=$(echo "$ID" | cut -d " " -f 1)
+    i3-msg "[con_id=\"${ID}\"]" kill > /dev/null
+    i3-msg "[con_id=\"${ID2}\"]" kill > /dev/null
+    i3-msg floating disable > /dev/null 
+    exit 0;
+fi
+
+
+# check if there is already a zoomer session
+T=$(i3-msg -t get_tree | jq '.. | select(.name? and .name == "caca for X") | .id')
+if [ ${#T} -ge 6 ]; then 
+    exit 1 
+fi
+
+base="~/.config/home-manager/home/zoomers"
+files=$(ls -1 ~/.config/home-manager/home/zoomers | shuf)
+files=$(echo "$files" | tr '\n' ' ')
+currID=$(i3-msg -t get_tree | jq '.. | objects | select(.focused==true).id')
+
+c=1
+val="0 33 66"
+for x in $val; do
+    if [ "$x" -eq 33 ]; then 
+        continue
+    fi
+    for y in $val; do 
+        if [ "$x" -eq 66 ] && [ "$y" -eq 66 ]; then 
+            continue 
+        fi
+        file=$(echo "$files" | cut -d " " -f $c)
+        i3-msg exec "mpv --title=zoom$c --border=no --no-audio --loop yes --geometry=25%:0% ${base}/${file}" > /dev/null
+
+        sleep 0.3
+
+        ID=$(i3-msg -t get_tree | jq '.. | select(.name? and .name == "zoom'$c'") | .id')
+        send_message "$ID" "$x" "$y" 33 33
+        c=$((c + 1))
+    done
+done
+
+i3-msg exec "cacafire" > /dev/null
+i3-msg exec "cacademo" > /dev/null
+
+sleep 0.3
+
+ID=$(i3-msg -t get_tree | jq '.. | select(.name? and .name == "caca for X") | .id')
+ID=$(echo "$ID" | tr '\n' ' ')
+ID2=$(echo "$ID" | cut -d " " -f 2)
+ID=$(echo "$ID" | cut -d " " -f 1)
+
+send_message "$ID" 33 66 33 33
+
+send_message "$ID2" 66 66 33 33
+
+send_message "$currID" 22 0 55 66
+i3-msg "[con_id=\"${currID}\"]" focus > /dev/null

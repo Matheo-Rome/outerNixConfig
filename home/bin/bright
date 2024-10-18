@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+#Get Current and Max brightness level
+MaxBright=$(cat /sys/class/backlight/intel_backlight/max_brightness) 
+CurrBright=$(cat /sys/class/backlight/intel_backlight/brightness)
+
+Step=5 #percentage of increase or decrease in brightness
+StepBright=$((Step * MaxBright / 100))
+
+if [ "$1" = "+" ]; then 
+    CurrBright=$((CurrBright + StepBright)) 
+elif [ "$1" = "-" ]; then 
+    CurrBright=$((CurrBright - StepBright)) 
+fi
+
+if [ "$CurrBright" -le "$MaxBright" ]; then 
+    brightnessctl s "$CurrBright"
+fi
+
+echo "New Brightness level: ""$CurrBright"
+exit 0

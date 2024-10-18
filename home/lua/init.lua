@@ -1,62 +1,70 @@
 local opt = vim.opt
 local g = vim.g
 
-require('gitsigns').setup()
+require("gitsigns").setup()
 
-g.mapleader = ' '
- 
-vim.cmd [[
+g.mapleader = " "
+
+vim.cmd([[
      set nowrap
      set nobackup
      set nowritebackup
      set noerrorbells
      set noswapfile
+     set showcmdloc statusline
+     set timeoutlen=100
 
      map ; :
- ]]
-
+     noremap <Up> <Nop>
+     noremap <Down> <Nop>
+     noremap <Left> <Nop>
+     noremap <Right> <Nop>
+ ]])
 
 local function map(mode, combo, mapping, opts)
-    local options = {noremap = true}
-    if opts then
-        options = vim.tbl_extend('force', options, opts)
-    end
-    vim.api.nvim_set_keymap(mode, combo, mapping, options)
+	local options = { noremap = true }
+	if opts then
+		options = vim.tbl_extend("force", options, opts)
+	end
+	vim.api.nvim_set_keymap(mode, combo, mapping, options)
 end
 
 -- Nvim Tree
-map('n', '<C-t>', ':NvimTreeToggle <CR>', {silent = true, noremap = true})
+map("n", "<C-t>", ":NvimTreeToggle <CR>", { silent = true, noremap = true })
 
--- Telescope 
-map('n', '<C-f>', ':Telescope find_files <CR>', {silent = true, noremap = true})
-map('n', '<C-g>', ':Telescope <CR>', {silent = true, noremap = true})
-map('n', '<C-n>', ':Telescope live_grep <CR>', {silent = true, noremap = true})
-map('n', '<C-o>', ':Telescope oldfiles <CR>', {silent = true, noremap = true})
+-- Telescope
+map("n", "<C-f>", ":Telescope find_files <CR>", { silent = true, noremap = true })
+map("n", "<C-g>", ":Telescope <CR>", { silent = true, noremap = true })
+map("n", "<C-n>", ":Telescope live_grep <CR>", { silent = true, noremap = true })
+map("n", "<C-o>", ":Telescope oldfiles <CR>", { silent = true, noremap = true })
+
+-- Which-key
+map("n", "<leader>w", ":WhichKey <CR>", { silent = true, noremap = true })
 
 -- LspSaga
-map('n', '<C-l>', ':Lspsaga hover_doc <CR>', {silent = true, noremap = true})
+map("n", "<C-l>", ":Lspsaga hover_doc <CR>", { silent = true, noremap = true })
 
-map("n", "<C-r>", ":Lspsaga rename<CR>", {silent = true, noremap = true})
-map("n", "<C-h>",":Lspsaga lsp_finder <CR>", {silent = true, noremap = true})
+map("n", "<C-r>", ":Lspsaga rename<CR>", { silent = true, noremap = true })
+map("n", "<C-h>", ":Lspsaga lsp_finder <CR>", { silent = true, noremap = true })
 
 -- BufferLine displacement
-map("n", "<C-PageUp>", ":BufferLineCyclePrev <CR>", {silent = true, noremap = true})
-map("n", "<C-PageDown>", ":BufferLineCycleNext <CR>", {silent = true, noremap = true})
+map("n", "<C-PageUp>", ":BufferLineCyclePrev <CR>", { silent = true, noremap = true })
+map("n", "<C-PageDown>", ":BufferLineCycleNext <CR>", { silent = true, noremap = true })
 
 -- Set clipboard to use system clipboard
 opt.clipboard = "unnamedplus"
 
--- Remove default vim bar 
+-- Remove default vim bar
 opt.showmode = false
 
--- Use mouse 
+-- Use mouse
 opt.mouse = "a"
 opt.mousemoveevent = true
 
 opt.viminfo = ""
 opt.viminfofile = "NONE"
 
-opt.encoding= "utf-8"
+opt.encoding = "utf-8"
 opt.compatible = false
 
 -- Split behavior
@@ -91,12 +99,10 @@ opt.autoindent = true
 opt.smartcase = true
 opt.ignorecase = true
 opt.hlsearch = true
-opt.lazyredraw = true
+opt.lazyredraw = false
 
 -- Nicer UI settings
 opt.termguicolors = true
 
 -- Notify
-vim.notify = require('notify')
-
-
+vim.notify = require("notify")

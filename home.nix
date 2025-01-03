@@ -63,7 +63,7 @@ in
     gtk3
     htop
     imagemagick
-    jetbrains-toolbox
+    #jetbrains-toolbox
     julia
     jq
     killall
@@ -93,7 +93,7 @@ in
     polybar
     scrot
     slack
-    spotify
+    #spotify
     tmux
     tree
     thefuck

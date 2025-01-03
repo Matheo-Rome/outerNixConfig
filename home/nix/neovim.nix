@@ -59,6 +59,7 @@ in
     indent-blankline-nvim
     rainbow-delimiters-nvim
     #smartcolumn-nvim
+    quickmath-nvim
     
     #Formatter 
     conform-nvim

@@ -9,7 +9,7 @@ update_sink() {
 volume_up() {
     update_sink
     vol=$(pamixer --sink "$sink" --get-volume)
-    if [ $vol -lt $max_volum ] ; then
+    if [ "$vol" -lt $max_volum ] ; then
         pactl set-sink-volume "$sink" +1%
     else 
         pactl set-sink-volume "$sink" 100%
@@ -31,12 +31,12 @@ volume_print() {
 
     active_port=$(pacmd list-sinks | sed -n "/index: $sink/,/index:/p" | grep active)
     vol=$(pamixer --sink "$sink" --get-volume)
-    if [ $vol -le 25 ] ; then
-        icon="";
-    elif [ $vol -le 75 ]; then
-        icon=""
+    if [ "$vol" -le 25 ] ; then
+        icon="  ";
+    elif [ "$vol" -le 75 ]; then
+        icon="  "
     else
-        icon="󰕾"
+        icon="󰕾  "
     fi
 
     muted=$(pamixer --sink "$sink" --get-mute)

@@ -7,27 +7,26 @@
 
     font = {
       size = 9;
-      normal = {
-        family = "JetBrainsMono";
-        style = "Regular";
-      };
-      bold = {
-        family = "JetBrainsMono";
-        style = "Bold";
-      };
-      italic = {
-        family = "JetBrainsMono";
-        style = "italic";
-      };
-
+  #     normal = {
+  #       family = "JetBrainsMono";
+  #       style = "Regular";
+  #     };
+  #     bold = {
+  #       family = "JetBrainsMono";
+  #       style = "Bold";
+  #     };
+  #     italic = {
+  #       family = "JetBrainsMono";
+  #       style = "italic";
+  #     };
     };
-
-    cursor.style = "Beam";
   
-  
-    colors = {
-      # Default colors
-      primary = {
+     cursor.style = "Beam";
+   
+   
+     colors = {
+       # Default colors
+       primary = {
         background = "0x1c0124";
         foreground = "0xf8f8f2";
       };

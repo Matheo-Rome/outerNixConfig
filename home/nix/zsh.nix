@@ -20,7 +20,9 @@
       cd = "cs";
       toolchain = "cd ~/epita/toolchain/toolchain";
       gitlab = "cd ~/epita/gitlab-manager/terraform"; 
-      homem = "cd ~/.config/home-manager/home";
+      home = "cd ~/.config/home-manager/home";
+      ns = "nix-shell";
+      nsp = "nix-shell -p";
   };
 
   autosuggestion.enable = true;

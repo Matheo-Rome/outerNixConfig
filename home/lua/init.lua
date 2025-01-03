@@ -30,26 +30,26 @@ local function map(mode, combo, mapping, opts)
 end
 
 -- Nvim Tree
-map("n", "<C-t>", ":NvimTreeToggle <CR>", { silent = true, noremap = true })
+map("n", "<leader>t", ":NvimTreeToggle <CR>", { silent = true, noremap = true })
 
 -- Telescope
-map("n", "<C-f>", ":Telescope find_files <CR>", { silent = true, noremap = true })
-map("n", "<C-g>", ":Telescope <CR>", { silent = true, noremap = true })
-map("n", "<C-n>", ":Telescope live_grep <CR>", { silent = true, noremap = true })
-map("n", "<C-o>", ":Telescope oldfiles <CR>", { silent = true, noremap = true })
+map("n", "<leader>f", ":Telescope find_files <CR>", { silent = true, noremap = true })
+map("n", "<leader>g", ":Telescope <CR>", { silent = true, noremap = true })
+map("n", "<leader>n", ":Telescope live_grep <CR>", { silent = true, noremap = true })
+map("n", "<leader>o", ":Telescope oldfiles <CR>", { silent = true, noremap = true })
 
 -- Which-key
 map("n", "<leader>w", ":WhichKey <CR>", { silent = true, noremap = true })
 
 -- LspSaga
-map("n", "<C-l>", ":Lspsaga hover_doc <CR>", { silent = true, noremap = true })
+map("n", "<leader>l", ":Lspsaga hover_doc <CR>", { silent = true, noremap = true })
 
-map("n", "<C-r>", ":Lspsaga rename<CR>", { silent = true, noremap = true })
-map("n", "<C-h>", ":Lspsaga lsp_finder <CR>", { silent = true, noremap = true })
+map("n", "<leader>r", ":Lspsaga rename<CR>", { silent = true, noremap = true })
+map("n", "<leader>h", ":Lspsaga lsp_finder <CR>", { silent = true, noremap = true })
 
 -- BufferLine displacement
-map("n", "<C-PageUp>", ":BufferLineCyclePrev <CR>", { silent = true, noremap = true })
-map("n", "<C-PageDown>", ":BufferLineCycleNext <CR>", { silent = true, noremap = true })
+map("n", "<leader>PageUp", ":BufferLineCyclePrev <CR>", { silent = true, noremap = true })
+map("n", "<leader>PageDown", ":BufferLineCycleNext <CR>", { silent = true, noremap = true })
 
 -- Set clipboard to use system clipboard
 opt.clipboard = "unnamedplus"

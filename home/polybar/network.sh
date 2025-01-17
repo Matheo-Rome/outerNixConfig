@@ -44,9 +44,9 @@ network_print() {
             fi
 
             if [ $counter -gt 0 ]; then
-                echo "%{B#2D3544}%{F#A880B0}%{T6}$icon %{T-}$description"
+                echo "%{B#2D3544}%{F#A880B0}%{T3}$icon %{T-}$description"
             else
-                echo "%{B#2D3544}%{F#A880B0}%{T6}$icon %{T-}$description"
+                echo "%{B#2D3544}%{F#A880B0}%{T3}$icon %{T-}$description"
             fi
 
             counter=$((counter + 1))

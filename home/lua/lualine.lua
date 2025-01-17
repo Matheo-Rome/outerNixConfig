@@ -125,7 +125,7 @@ end
 
 ins_a({
 	function()
-		return "   "
+		return "   "
 	end,
 	color = function()
 		-- auto change color according to neovims mode
@@ -161,25 +161,25 @@ ins_a({
 	-- mode component
 	function()
 		local symbol = {
-			n = "  NORMAL",
-			i = "  INSERT",
-			v = "  VISUAL",
-			[""] = "  VISUAL BLOCK",
-			V = "  VISUAL LINE",
-			c = "  COMMAND",
-			no = "  NORMAL (no)",
-			s = "  SELECT",
-			S = "  S-LINE",
-			[""] = "  S-BLOCK",
-			ic = "  INSERT (completion)",
-			R = "  REPLACE",
-			Rv = "  V-REPLACE",
-			cv = "  COMMAND",
-			ce = "  COMMAND",
-			r = "  PROMPT",
-			rm = "  MORE",
-			["r?"] = "  CONFIRM",
-			["!"] = "  SHELL",
+			n = "  NORMAL ",
+			i = "  INSERT",
+			v = "  VISUAL",
+			[""] = "  VISUAL BLOCK",
+			V = "  VISUAL LINE",
+			c = "  COMMAND",
+			no = "  NORMAL (no)",
+			s = "  SELECT",
+			S = "  S-LINE",
+			[""] = "  S-BLOCK",
+			ic = "  INSERT (completion)",
+			R = "  REPLACE",
+			Rv = "  V-REPLACE",
+			cv = "  COMMAND",
+			ce = "  COMMAND",
+			r = "  PROMPT",
+			rm = "  MORE",
+			["r?"] = "  CONFIRM",
+			["!"] = "  SHELL",
 		}
 		return symbol[vim.fn.mode()]
 	end,
@@ -197,13 +197,13 @@ ins_b({
 
 ins_left({
 	"branch",
-	icon = " ",
+	icon = " ",
 	color = { fg = colors.violet, gui = "bold" },
 })
 
 ins_left({
 	"diff",
-	symbols = { added = " ", modified = " ", removed = " " },
+	symbols = { added = " ", modified = " ", removed = " " },
 	diff_color = {
 		added = { fg = colors.green },
 		modified = { fg = colors.orange },
@@ -249,7 +249,7 @@ ins_right({
 		end
 		return msg
 	end,
-	icon = " LSP:",
+	icon = " LSP:",
 	color = { fg = colors.white, gui = "bold" },
 })
 

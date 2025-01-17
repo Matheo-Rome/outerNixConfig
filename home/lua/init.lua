@@ -19,6 +19,8 @@ vim.cmd([[
      noremap <Down> <Nop>
      noremap <Left> <Nop>
      noremap <Right> <Nop>
+     nnoremap <C-PageUp> :bprevious<CR>
+     nnoremap <C-PageDown> :bnext<CR>
  ]])
 
 local function map(mode, combo, mapping, opts)
@@ -43,6 +45,7 @@ map("n", "<leader>w", ":WhichKey <CR>", { silent = true, noremap = true })
 
 -- LspSaga
 map("n", "<leader>l", ":Lspsaga hover_doc <CR>", { silent = true, noremap = true })
+map("n", "<leader>d", ":Lspsaga goto_definition <CR>", { silent = true, noremap = true })
 
 map("n", "<leader>r", ":Lspsaga rename<CR>", { silent = true, noremap = true })
 map("n", "<leader>h", ":Lspsaga lsp_finder <CR>", { silent = true, noremap = true })

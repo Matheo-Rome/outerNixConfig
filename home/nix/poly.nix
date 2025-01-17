@@ -43,10 +43,10 @@
         font-1 = "Iosevka Nerd Font:style=Medium:size=20;3";
         font-2 = "JetBrainsMono Nerd Font:size=9;3";
         font-3 = "outerNix:style=Regular:size=15;3";
-        font-4 = "Font Awesome 5 Free,Font Awesome 5 Free Solid:style=Solid:size=12;3";
-        font-5 = "Iosevka Nerd Font:style=Bold:size=13;3";
-        font-6 = "VictorMono Nerd Font:style=Bold:size=11;3";
-        font-7 = "Iosevka Nerd Font Mono:style=Regular;size=19;3";
+        font-4 = "Font Awesome 6 Free,Font Awesome 6 Free Solid:style=Solid:size=10;3";
+        font-5 = "Iosevka Nerd Font:style=Bold:size=12;3";
+        font-6 = "VictorMono Nerd Font Mono,VictorMono NFM:style=Bold:size=11;3";
+        font-7 = "Iosevka Nerd Font Mono,Iosevka NFM:style=Regular:size=12;3";
         font-8 = "outerNix:style=Regular:size=10;3";
         #font-1 = "waffle:size=10;3";
         #font-2 = "Iosevka Nerd Font:style=Medium:size=22;5";

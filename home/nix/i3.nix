@@ -19,6 +19,7 @@ in
     startup = [
       {
         command = "feh --bg-scale ~/.config/home-manager/home/pictures/outer.png";
+
         always = true;
       }
       {
@@ -26,11 +27,11 @@ in
         always = true;
       }
       {
-        command = "polybar -q -r main &";
+        command = "killall polybar; polybar -q -r main &";
         always = true;
       }
       {
-        command = "betterlockscreen -u ~/.config/home-manager/home/picture/sol.png";
+        command = "betterlockscreen -u ~/.config/home-manager/home/picture/lockscreen";
         always = true;
       }
     ];
@@ -56,7 +57,8 @@ in
       "${mod}+g" = "exec rofi -show window -show-icons";
       "${mod}+b" = "exec rofi-rbw";
 
-
+      #Switch Key 
+      "${mod}+Shift+t" = "exec ~/.config/home-manager/home/bin/keyswitch";
 
       #Change Focus
       "${mod}+j" = "focus left";
@@ -64,8 +66,8 @@ in
       "${mod}+l" = "focus up";
       "${mod}+m" = "focus right";
 
-      "${mod}+Left" = "focus left";
-      "${mod}+Down" = "focus down";
+      # "${mod}+Left" = "focus left";
+      # "${mod}+Down" = "focus down";
       "${mod}+Up" = "focus up";
       "${mod}+Right" = "focus right";
 

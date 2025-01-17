@@ -5,7 +5,7 @@ CurrBright=$(cat /sys/class/backlight/intel_backlight/brightness)
 
 MathBright=$((CurrBright * 100 / MaxBright))
 
-icon="󰖨 ";
+icon=" 󰖨 ";
 #if [ "$MathBright" -gt 90 ]; then
 #    icon=" "
 #elif [ "$MathBright" -gt 70 ]; then
@@ -18,4 +18,4 @@ icon="󰖨 ";
 #    icon=" "
 #fi
 
-echo "%{B#2D3544}%{T6}%{F#2DC9FD}$icon %{T-}$MathBright%" 
+echo "%{B#2D3544}%{T3}%{F#2DC9FD}$icon%{T-}$MathBright%" 

@@ -14,16 +14,16 @@ in
       enable-click = true;
       enable-scroll = false;
 
-      icon-0 = "1;%{F#FFD400}%{o#FFD400}%{T9}%{T-}  1"; #Sun
-      icon-1 = "2;%{F#FF9F00}%{o#FF9F00}%{T9}%{T-} 2";  #Sun Station
-      icon-2 = "3;%{F#FE5100}%{o#FE5100}%{T9}%{T-} %{F#855A41}%{o#855A41} 3";  #Hourglasses twins
-      icon-3 = "4;%{F#64854C}%{o#64854C}%{T9}%{T-}  4";  #Timber Hearth
-      icon-4 = "5;%{F#616D98}%{o#616D98}%{T9}%{T-}  5"; #Brittle Hollow 
-      icon-5 = "6;%{F#6DA05E}%{o#6DA05E}%{T9}%{T-}  6"; #Giant's deep
-      icon-6 = "7;%{F#675C38}%{o#675C38}%{T9}%{T-}  7"; #Dark Bramble
-      icon-7 = "8;%{F#DEE7E9}%{o#DEE7E9}%{T9}%{T-}  8"; #White Hole Station
-      icon-8 = "9;%{F#7EF5F6}%{o#7EF5F6}%{T9}%{T-}  9"; #The Wanderer
-      icon-9 = "10;%{F#677890}%{o#677890}%{T9}%{T-}10"; #Quantum moon
+      icon-0 = "1;%{F#FFD400}%{o#FFD400}%{T9}%{T-}  1"; #Sun
+      icon-1 = "2;%{F#FF9F00}%{o#FF9F00}%{T9} %{T-} 2";  #Sun Station
+      icon-2 = "3;%{F#FE5100}%{o#FE5100}%{T9}%{T-} %{F#855A41}%{o#855A41} 3";  #Hourglasses twins
+      icon-3 = "4;%{F#64854C}%{o#64854C}%{T9}%{T-}  4";  #Timber Hearth
+      icon-4 = "5;%{F#616D98}%{o#616D98}%{T9}%{T-}  5"; #Brittle Hollow 
+      icon-5 = "6;%{F#6DA05E}%{o#6DA05E}%{T9}%{T-}  6"; #Giant's deep
+      icon-6 = "7;%{F#675C38}%{o#675C38}%{T9}%{T-}  7"; #Dark Bramble
+      icon-7 = "8;%{F#DEE7E9}%{o#DEE7E9}%{T9}%{T-}  8"; #White Hole Station
+      icon-8 = "9;%{F#7EF5F6}%{o#7EF5F6}%{T9}%{T-}  9"; #The Wanderer
+      icon-9 = "10;%{F#677890}%{o#677890}%{T9}%{T-}10"; #Quantum moon
 
       format = "<label-state>";
       format-padding = 0;
@@ -58,7 +58,7 @@ in
 
   powermenu = {
       type = "custom/text";
-      content = "   ";
+      content = "   ";
       content-foreground = color.cerulean;
       content-background = color.background;
       click-left = polypath +"/powermenu.sh &";
@@ -322,7 +322,7 @@ in
 
   left-side = {
     type = "custom/text";
-    content = "     ";
+    content = "       ";
     content-background = background;
     content-foreground = color.cerulean;
   };

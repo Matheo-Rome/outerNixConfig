@@ -32,17 +32,17 @@ volume_print() {
     active_port=$(pacmd list-sinks | sed -n "/index: $sink/,/index:/p" | grep active)
     vol=$(pamixer --sink "$sink" --get-volume)
     if [ "$vol" -le 25 ] ; then
-        icon="  ";
+        icon=" ";
     elif [ "$vol" -le 75 ]; then
-        icon="  "
+        icon=" "
     else
-        icon="󰕾  "
+        icon=" "
     fi
 
     muted=$(pamixer --sink "$sink" --get-mute)
 
     if [ "$muted" = true ]; then
-        echo "%{B#2D3544}%{F#6DA05E}%{T3}"
+        echo "%{B#2D3544}%{F#6DA05E}%{T3} "
     else
         echo "%{B#2D3544}%{F#6DA05E}%{T6}$icon %{T-}$(pamixer --sink "$sink" --get-volume)%"
     fi

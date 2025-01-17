@@ -37,7 +37,8 @@ in
   # environment.
   home.packages = with pkgs; [
     #Fonts
-    (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "JetBrainsMono"]; })
+    (pkgs.nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" "JetBrainsMono" "VictorMono" "Iosevka"]; })
+    font-awesome_6
     #Regular packages
     anki
     arandr
@@ -45,6 +46,7 @@ in
     bc
     bitwarden
     brightnessctl
+    bluetuith
     cargo
     ccls 
     cmake 

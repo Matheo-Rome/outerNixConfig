@@ -151,11 +151,11 @@ in
                 luafile ~/.config/home-manager/home/lua/noice.lua
                 luafile ~/.config/home-manager/home/lua/toggleterm.lua
                 luafile ~/.config/home-manager/home/lua/snippet.lua
-                luafile ~/.config/home-manager/home/lua/which_key.lua
                 luafile ~/.config/home-manager/home/lua/indent-blankline.lua
             ]]
         end, 100)
         EOF
     '';
+                # luafile ~/.config/home-manager/home/lua/which_key.lua
 
 }

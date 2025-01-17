@@ -1,0 +1,34 @@
+#!/bin/sh
+
+# Current layout file
+LAYOUT_FILE="$HOME/.current_keyboard_layout"
+
+# Function to switch to AZERTY (ISO)
+switch_to_azerty() {
+    setxkbmap fr
+    echo "azerty" > "$LAYOUT_FILE"
+    echo "Switched to AZERTY layout (ISO)."
+}
+
+# Function to switch to QWERTY (ANSI)
+switch_to_qwerty() {
+    setxkbmap us -variant intl
+    echo "qwerty" > "$LAYOUT_FILE"
+    echo "Switched to QWERTY layout (ANSI)."
+}
+
+# Check if the layout file exists, create if not
+if [ ! -f "$LAYOUT_FILE" ]; then
+    echo "azerty" > "$LAYOUT_FILE"  # Default to AZERTY
+fi
+
+# Read the current layout
+CURRENT_LAYOUT=$(cat "$LAYOUT_FILE")
+
+# Toggle between layouts
+if [ "$CURRENT_LAYOUT" = "azerty" ]; then
+    switch_to_qwerty
+else
+    switch_to_azerty
+fi
+

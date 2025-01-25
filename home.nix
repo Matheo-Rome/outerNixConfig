@@ -92,6 +92,7 @@ in
     pre-commit
     pywal
     procps
+    prismlauncher
     polybar
     scrot
     slack

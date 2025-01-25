@@ -1,7 +1,7 @@
 { pkgs, lib, ...}:
 
 let
-  mod = "Mod1";
+  mod = "Mod4";
   modi = "drun,run,window";
 in
 {
